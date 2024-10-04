@@ -1,7 +1,7 @@
 import ProfileImage from "../assets/profile.jpeg";
 import React, { useEffect, useState, useRef } from "react";
 
-export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
+export default function AdminNavbar({ isNavOpen, toggleNavbar }) {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
   const navContentRef = useRef(null);
@@ -53,11 +53,11 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
           <div className={`pt-10 ${isNavOpen ? "block" : "invisible"}`}>
             <img
               src={ProfileImage}
-              alt="Profile"
+              alt=""
               className="rounded-full w-32 h-32 object-cover mx-auto "
             />
             <h1 className="text-white text-center mt-3 font-sans text-2xl font-bold">
-              {isNavOpen ? "Jose Garda" : ""}
+              {isNavOpen ? "Admin 1" : ""}
             </h1>
           </div>
           <div className="mt-32 ml-9">
@@ -78,11 +78,8 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                   />
                 </svg>
 
-                <h1
-                  className={`text-white lg:text-[24px] md:text-[15px] font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative`}
-                >
-                  {isNavOpen ? "PROFILE" : ""}
-
+                <h1 className="text-white lg:text-[24px] text-[18px] font-sans ml-3 font-bold  group-hover:text-[#84CECF] group-active:italic relative">
+                  {isNavOpen ? "LIST CUSTOMER" : ""}
                   <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
                 </h1>
               </a>
@@ -103,12 +100,8 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                     d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
                   />
                 </svg>
-                <h1
-                  className={`text-white lg:text-[24px] md:text-[15px]  font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative ${
-                    isNavOpen ? "" : "invisible"
-                  }`}
-                >
-                  TRANSACTION
+                <h1 className="text-white lg:text-[24px] text-[18px] font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative">
+                  {isNavOpen ? "LIST TRANSACTION" : ""}
                   <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
                 </h1>
               </a>
@@ -129,19 +122,14 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                     d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
                   />
                 </svg>
-
-                <h1
-                  className={`text-white lg:text-[24px] md:text-[15px]  font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative ${
-                    isNavOpen ? "" : "invisible"
-                  }`}
-                >
-                  PENDING
+                <h1 className="text-white lg:text-[24px] text-[18px] font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative">
+                  {isNavOpen ? "PENDING" : ""}
                   <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
                 </h1>
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a href="" className="flex items-center cursor-pointer group">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -157,72 +145,13 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                   />
                 </svg>
 
-                <h1
-                  className={`text-white lg:text-[24px] md:text-[15px] font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative ${
-                    isNavOpen ? "" : "invisible"
-                  }`}
-                >
-                  {isNavOpen ? "PAY INSTALLMENT" : ""}
+                <h1 className="text-white lg:text-[24px] text-[18px] font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative">
+                  {isNavOpen ? "ADD INSTALLMENT" : ""}
                   <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
                 </h1>
               </a>
             </div>
-            <div className={`flex items-center mb-4`}>
-              <a href="#" className="flex items-center cursor-pointer group">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="white"
-                  className="size-6 group-hover:stroke-[#84CECF]"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
-                  />
-                </svg>
-
-                <h1
-                  className={`text-white lg:text-[24px] md:text-[15px] font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative ${
-                    isNavOpen ? "" : "invisible"
-                  }`}
-                >
-                  {isNavOpen ? "UPDATE PROFILE" : " "}
-
-                  <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
-                </h1>
-              </a>
-            </div>
-            <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="white"
-                  className="size-6 group-hover:stroke-[#84CECF]"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z"
-                  />
-                </svg>
-
-                <h1
-                  className={`text-white lg:text-[24px] md:text-[15px]  font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative ${
-                    isNavOpen ? "" : "invisible"
-                  }`}
-                >
-                  {isNavOpen ? "MORE INFORMATION" : " "}
-                  <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
-                </h1>
-              </a>
-            </div>
-            <div className="flex items-center mb-4 mt-52">
+            <div className="flex items-center mb-4 mt-80">
               <a href="#" className="flex items-center cursor-pointer group">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -239,12 +168,8 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                   />
                 </svg>
 
-                <h1
-                  className={`text-white lg:text-[24px] md:text-[15px]  font-sans ml-3 font-bold group-hover:text-[#ce0e0e] ${
-                    isNavOpen ? "" : "invisible"
-                  }`}
-                >
-                  LOGOUT
+                <h1 className="text-white lg:text-[24px] md:text-[18px] font-sans ml-3 font-bold group-hover:text-[#ce0e0e]">
+                  {isNavOpen ? "LOGOUT" : ""}
                 </h1>
               </a>
             </div>

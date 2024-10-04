@@ -1,17 +1,33 @@
 import CustomerNavbar from "./CustomerNavbar";
+import { useState } from "react";
 
 export default function UpdateProfile() {
+  const [isNavOpen, setIsNavOpen] = useState(true);
+
+  const handleToggleNavbar = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   return (
     <>
       <div className="flex flex-wrap">
-        <CustomerNavbar />
-        <div className="mt-20 ml-20 w-1/2">
-          <h1 className="text-[#02063D] text-6xl font-bold underline">
+        <CustomerNavbar
+          isNavOpen={isNavOpen}
+          toggleNavbar={handleToggleNavbar}
+        />
+        <div
+          className={`mt-20 ml-20 w-1/2 transition-all duration-300 ${
+            isNavOpen
+              ? "lg:ml-[500px] md:ml-[350px]  w-[calc(100%-300px)]"
+              : "ml-[130px] w-[calc(100%-60px)]"
+          }`}
+        >
+          <h1 className="text-[#02063D] lg:text-6xl md:text-5xl text-4xl font-bold underline">
             Update Profile
           </h1>
           <div className=" text-white flex flex-col mt-12">
             <div className="flex flex-wrap">
-              <div className="w-full max-w-lg bg-white sm:p-6 md:p-8 ">
+              <div className="lg:w-full md:w-full max-w-lg bg-white sm:p-6 md:p-8 ">
                 <form className="space-y-8 mb-10" action="#">
                   <div>
                     <label

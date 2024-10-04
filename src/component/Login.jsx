@@ -1,10 +1,10 @@
 export default function Login() {
   return (
     <>
-      <div className="bg-[#02063D] h-[100vh]">
-        <div className="container text-white mx-auto h-full flex flex-col justify-center">
-          <div className="flex flex-wrap justify-center items-center">
-            <div className="w-1/2 max-w-lg h-full p-4 bg-white border border-gray-200 rounded-3xl shadow sm:p-6 md:p-8 ">
+      <div className="bg-[#02063D] h-[100vh] overflow-hidden">
+        <div className="container text-white mx-auto lg:h-full flex flex-col justify-center items-center">
+          <div className="lg:flex lg:flex-wrap md:flex md:flex-wrap lg:mt-[150px] mt-52 mb-36  lg:flex-row w-full lg:items-center justify-center">
+            <div className="lg:w-1/2 md:w-1/2 lg:max-w-lg p-4 bg-white border border-gray-200 rounded-3xl shadow md:p-8 mx-10 md:mx-0">
               <form className="space-y-6 mb-10" action="#">
                 <h5 className="text-xl font-medium text-black">
                   Sign in to Kremasi
@@ -83,10 +83,12 @@ export default function Login() {
                 </div>
               </form>
             </div>
-            <div className="w-1/2 self-end px-4 text-center lg:w-1/2 lg:text-left lg:mb-32 font-sans ms-20">
-              <h1 className="text-[48px] font-bold">
-                <span className="text-[#84CECF] text-8xl block">Kremasi</span>{" "}
-                Your Financial <u className="block">Partner.</u>
+            <div className="w-full self-end lg:px-10 lg:text-left lg:mb-32 font-sans mt-10 md:px-4 mb-36 text-center lg:w-1/2">
+              <h1 className="lg:text-[40px] text-[16px] md:text-[26px] font-bold">
+                <span className="text-[#84CECF] lg:text-8xl text-6xl block">
+                  Kremasi
+                </span>{" "}
+                Your Financial <u className="lg:block md:block">Partner.</u>
               </h1>
             </div>
           </div>

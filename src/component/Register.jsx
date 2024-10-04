@@ -4,7 +4,7 @@ export default function Register() {
       <div className="bg-[#02063D] h-[100vh]">
         <div className="container text-white mx-auto h-full flex flex-col justify-center">
           <div className="flex flex-wrap justify-center items-center">
-            <div className="w-1/2 max-w-lg h-full p-4 bg-white border border-gray-200 rounded-3xl shadow sm:p-6 md:p-8 ">
+            <div className="lg:w-1/2 w-full mx-6 max-w-lg h-full p-4 bg-white border border-gray-200 rounded-3xl shadow sm:p-6 md:p-8 ">
               <form className="space-y-6 mb-10" action="#">
                 <h5 className="text-xl font-medium text-black">
                   Sign up to Kremasi
