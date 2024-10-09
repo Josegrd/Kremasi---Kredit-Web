@@ -19,7 +19,7 @@ export default function Hero() {
     <>
       <div className="bg-[#02063D] h-[100vh] overflow-hidden lg:overflow-auto">
         <div className="container text-white lg:mx-auto md:pt-44 py-28 md:py-0 lg:py-0">
-          <div className="flex flex-wrap lg:flex-row-reverse md:flex-row-reverse">
+          <div className="flex flex-wrap lg:mt-16 lg:flex-row-reverse md:flex-row-reverse">
             <div className="w-full self-end px-4 lg:w-1/2 md:w-1/2">
               <div className="relative">
                 <img
@@ -49,13 +49,13 @@ export default function Hero() {
                   type="button"
                   className="lg:w-52 w-24 lg:text-2xl text-[17px] lg:py-2.5 py-1.5 bg-[#8E8EDB] rounded-full text-center mb-2 hover:bg-[#6A6AC2] transition-colors duration-300"
                 >
-                  Login
+                  <a href="/login">Login</a>
                 </button>
                 <button
                   type="button"
                   className="lg:w-52 w-24 lg:text-2xl text-[17px] lg:py-2.5 outline outline-[#84CECF] rounded-full text-center mb-2 hover:bg-[#84CECF] hover:text-[#150E5E] transition-colors duration-300"
                 >
-                  Register
+                  <a href="/register">Register</a>
                 </button>
               </div>
             </div>

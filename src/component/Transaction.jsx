@@ -1,26 +1,8 @@
-import CustomerNavbar from "./CustomerNavbar";
-import { useState } from "react";
-
 export default function Transaction() {
-  const [isNavOpen, setIsNavOpen] = useState(true);
-
-  const handleToggleNavbar = () => {
-    setIsNavOpen(!isNavOpen);
-  };
-
   return (
     <>
-      <div className="flex flex-wrap">
-        <CustomerNavbar
-          isNavOpen={isNavOpen}
-          toggleNavbar={handleToggleNavbar}
-        />
         <div
-          className={`mt-20 ml-20 mx-6 transition-all duration-300 ${
-            isNavOpen
-              ? "lg:ml-[500px] md:ml-[350px]  w-[calc(100%-300px)]"
-              : "ml-[130px] w-[calc(100%-60px)]"
-          }`}
+          className={`mt-20`}
         >
           <h1 className="text-[#02063D] lg:text-6xl md:text-5xl text-4xl font-bold underline">
             Transaction
@@ -59,7 +41,6 @@ export default function Transaction() {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }

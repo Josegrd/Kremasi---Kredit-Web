@@ -1,22 +1,8 @@
-import AdminNavbar from "./AdminNavbar";
-import { useState } from "react";
-
 export default function AddInstallment() {
-  const [isNavOpen, setIsNavOpen] = useState(true);
-
-  const handleToggleNavbar = () => {
-    setIsNavOpen(!isNavOpen);
-  };
   return (
     <>
-      <div className="flex flex-wrap">
-        <AdminNavbar isNavOpen={isNavOpen} toggleNavbar={handleToggleNavbar} />
         <div
-          className={`mt-20 ml-20 w-1/2 transition-all duration-300 ${
-            isNavOpen
-              ? "lg:ml-[500px] md:ml-[350px]  w-[calc(100%-300px)]"
-              : "ml-[130px] w-[calc(100%-60px)]"
-          }`}
+          className={`mt-20`}
         >
           <h1 className="text-[#02063D] lg:text-6xl md:text-5xl text-4xl font-bold underline">
             Add Installment
@@ -53,7 +39,6 @@ export default function AddInstallment() {
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 }

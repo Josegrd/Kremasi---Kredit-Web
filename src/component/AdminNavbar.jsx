@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import ProfileImage from "../assets/profile.jpeg";
 import React, { useEffect, useState, useRef } from "react";
 
@@ -5,6 +6,13 @@ export default function AdminNavbar({ isNavOpen, toggleNavbar }) {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
   const navContentRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
 
   useEffect(() => {
     const handleHamburgerClick = () => {
@@ -62,7 +70,10 @@ export default function AdminNavbar({ isNavOpen, toggleNavbar }) {
           </div>
           <div className="mt-32 ml-9">
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/list-customer"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -85,7 +96,10 @@ export default function AdminNavbar({ isNavOpen, toggleNavbar }) {
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/list-transaction"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -107,7 +121,10 @@ export default function AdminNavbar({ isNavOpen, toggleNavbar }) {
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/pending-admin"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -129,7 +146,10 @@ export default function AdminNavbar({ isNavOpen, toggleNavbar }) {
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="" className="flex items-center cursor-pointer group">
+              <a
+                href="/add-installment"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -151,8 +171,11 @@ export default function AdminNavbar({ isNavOpen, toggleNavbar }) {
                 </h1>
               </a>
             </div>
-            <div className="flex items-center mb-4 mt-80">
-              <a href="#" className="flex items-center cursor-pointer group">
+            <div
+              className="flex items-center mb-4 mt-80"
+              onClick={handleLogout}
+            >
+              <a className="flex items-center cursor-pointer group">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

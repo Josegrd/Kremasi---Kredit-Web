@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import ProfileImage from "../assets/profile.jpeg";
 import React, { useEffect, useState, useRef } from "react";
 
@@ -5,25 +6,42 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
   const navContentRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    navigate("/login");
+  };
+
+  const handleHamburgerClick = () => {
+    if (isNavOpen) {
+      hamburgerRef.current.classList.remove("hamburger-active");
+    } else {
+      hamburgerRef.current.classList.add("hamburger-active");
+    }
+    navMenuRef.current.classList.toggle("nav-open");
+    navContentRef.current.classList.toggle("hidden");
+    toggleNavbar();
+  };
+
+  const handleResize = () => {
+    if (window.innerWidth < 768) {
+      navMenuRef.current.classList.remove("nav-open"); // Tutup navbar di mode kecil
+      navContentRef.current.classList.add("hidden");
+    }
+  };
 
   useEffect(() => {
-    const handleHamburgerClick = () => {
-      if (isNavOpen) {
-        hamburgerRef.current.classList.remove("hamburger-active");
-      } else {
-        hamburgerRef.current.classList.add("hamburger-active");
-      }
-      navMenuRef.current.classList.toggle("nav-open");
-      navContentRef.current.classList.toggle("hidden");
-      toggleNavbar();
-    };
     const hamburgerElement = hamburgerRef.current;
     hamburgerElement.addEventListener("click", handleHamburgerClick);
+    window.addEventListener("resize", handleResize);
 
     return () => {
       hamburgerElement.removeEventListener("click", handleHamburgerClick);
+      window.removeEventListener("resize", handleResize);
     };
-  }, [isNavOpen, toggleNavbar]);
+  }, [toggleNavbar]);
 
   return (
     <>
@@ -62,7 +80,13 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
           </div>
           <div className="mt-32 ml-9">
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/profile"
+                className="flex items-center cursor-pointer group"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -82,13 +106,19 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                   className={`text-white lg:text-[24px] md:text-[15px] font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative`}
                 >
                   {isNavOpen ? "PROFILE" : ""}
-
-                  <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
+                  {isNavOpen ? (
+                    <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
+                  ) : (
+                    ""
+                  )}
                 </h1>
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/make-loan"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -108,13 +138,45 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                     isNavOpen ? "" : "invisible"
                   }`}
                 >
-                  TRANSACTION
+                  LOAN
                   <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
                 </h1>
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/transaction"
+                className="flex items-center cursor-pointer group"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="white"
+                  className="size-6 group-hover:stroke-[#84CECF]"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z"
+                  />
+                </svg>
+                <h1
+                  className={`text-white lg:text-[24px] md:text-[15px]  font-sans ml-3 font-bold group-hover:text-[#84CECF] group-active:italic relative ${
+                    isNavOpen ? "" : "invisible"
+                  }`}
+                >
+                  HISTORY
+                  <span className="absolute bottom-0 left-0 w-0 h-1 bg-[#84CECF] transition-all duration-500 group-hover:w-full"></span>
+                </h1>
+              </a>
+            </div>
+            <div className="flex items-center mb-4">
+              <a
+                href="/pending-transaction"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -141,7 +203,10 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/pay-transaction"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -168,7 +233,10 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
               </a>
             </div>
             <div className={`flex items-center mb-4`}>
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/update-profile"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -196,7 +264,10 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
               </a>
             </div>
             <div className="flex items-center mb-4">
-              <a href="#" className="flex items-center cursor-pointer group">
+              <a
+                href="/more-information"
+                className="flex items-center cursor-pointer group"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -222,8 +293,11 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
                 </h1>
               </a>
             </div>
-            <div className="flex items-center mb-4 mt-52">
-              <a href="#" className="flex items-center cursor-pointer group">
+            <div
+              className="flex items-center mb-4 mt-40"
+              onClick={handleLogout}
+            >
+              <a className="flex items-center cursor-pointer group">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
