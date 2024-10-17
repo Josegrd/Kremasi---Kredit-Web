@@ -2,11 +2,13 @@ import { useNavigate } from "react-router-dom";
 import ProfileImage from "../assets/profile.jpeg";
 import React, { useEffect, useState, useRef } from "react";
 
-export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
+export default function CustomerNavbar({ isNavOpen, toggleNavbar, userData }) {
   const hamburgerRef = useRef(null);
   const navMenuRef = useRef(null);
   const navContentRef = useRef(null);
   const navigate = useNavigate();
+  // console.log(userData);
+
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -75,7 +77,7 @@ export default function CustomerNavbar({ isNavOpen, toggleNavbar }) {
               className="rounded-full w-32 h-32 object-cover mx-auto "
             />
             <h1 className="text-white text-center mt-3 font-sans text-2xl font-bold">
-              {isNavOpen ? "Jose Garda" : ""}
+              {isNavOpen ? userData?.fullName : ""}
             </h1>
           </div>
           <div className="mt-32 ml-9">

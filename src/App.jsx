@@ -15,12 +15,39 @@ import UpdateProfile from "./component/UpdateProfile";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import CustomerNavbar from "./component/CustomerNavbar";
 import AdminNavbar from "./component/AdminNavbar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import RegisterAddIdentity from "./component/RegisterAddIdentitity";
 import MakeLoan from "./component/MakeLoan";
 import ProtectedRoute from "./component/ProtectedRoute";
+import { jwtDecode } from "jwt-decode";
+import { apiFetch } from "./api/api";
+import React from "react";
 
 function App() {
+  const [userData, setUserData] = useState(null);
+  const [nasabahId, setNasabahId] = useState(null);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const decodedToken = jwtDecode(token);
+        const nasabahId = decodedToken.nasabahId;
+
+        setNasabahId(nasabahId);
+
+        const result = await apiFetch(`/nasabah/${nasabahId}`, "GET");
+        const data = result.data;
+        // console.log("ini function fetchData : ", data);
+        setUserData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
+
   return (
     <Router>
       <Routes>
@@ -44,7 +71,7 @@ function App() {
           element={
             <ProtectedRoute>
               <WithCustomerNavbar>
-                <MakeLoan />
+                <MakeLoan userData={userData} />
               </WithCustomerNavbar>
             </ProtectedRoute>
           }
@@ -54,7 +81,7 @@ function App() {
           element={
             <ProtectedRoute>
               <WithCustomerNavbar>
-                <Transaction />
+                <Transaction userData={userData} />
               </WithCustomerNavbar>
             </ProtectedRoute>
           }
@@ -74,7 +101,7 @@ function App() {
           element={
             <ProtectedRoute>
               <WithCustomerNavbar>
-                <UpdateProfile />
+                <UpdateProfile nasabahId={nasabahId} />
               </WithCustomerNavbar>
             </ProtectedRoute>
           }
@@ -147,12 +174,34 @@ function App() {
 
 function WithCustomerNavbar({ children }) {
   const [isNavOpen, setIsNavOpen] = useState(true);
+  const [userData, setUserData] = useState(null); // State untuk menampung data user
+
   const handleToggleNavbar = () => {
     setIsNavOpen(!isNavOpen);
   };
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const decodedToken = jwtDecode(token);
+        const nasabahId = decodedToken.nasabahId;
+
+        const result = await apiFetch(`/nasabah/${nasabahId}`, "GET");
+        const data = result.data;
+        setUserData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUserData();
+  }, []);
   return (
     <div className="flex">
-      <CustomerNavbar isNavOpen={isNavOpen} toggleNavbar={handleToggleNavbar} />
+      <CustomerNavbar
+        isNavOpen={isNavOpen}
+        toggleNavbar={handleToggleNavbar}
+        userData={userData}
+      />
       <div
         className={`content transition-all duration-300 ${
           isNavOpen
@@ -161,6 +210,7 @@ function WithCustomerNavbar({ children }) {
         }`}
       >
         {children}
+        {/* {React.cloneElement(children, { userData })} */}
       </div>
     </div>
   );
